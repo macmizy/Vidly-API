@@ -18,11 +18,11 @@ app.get("/",(req,res)=>{
     res.send(console.log('Hello world'))
 })
 
-app.get("/vidly/genre", (req,res)=>{
+app.get("/api/genre", (req,res)=>{
     res.status(200).send(genre)
 })
 
-app.get("/vidly/genre/:id", (req,res)=>{
+app.get("/api/genre/:id", (req,res)=>{
     const genres = genre.find(gen => gen.id === parseInt(req.params.id))
     
     if(!genres) return res.status(404).send("The Genre with the given ID not found");
@@ -32,7 +32,7 @@ app.get("/vidly/genre/:id", (req,res)=>{
     res.status(200).send(genres)
 })
 
-app.post("/vidly/genre", (req,res)=>{
+app.post("/api/genre", (req,res)=>{
    // const result = validateGenre(req.body)
    const {error} = validateGenre(req.body) // result.error
    if(error) return res.status(400).send(result.error.details[0].message);
@@ -48,7 +48,7 @@ app.post("/vidly/genre", (req,res)=>{
     res.status(200).send(genre)
 })
 
-app.put("/vidly/genre/:id",(req,res)=>{
+app.put("/api/genre/:id",(req,res)=>{
     const genres = genre.find(gen => gen.id === parseInt(req.params.id))
     if(!genres) return res.status(404).send("The Genre with the given ID not found");
 
@@ -62,7 +62,7 @@ app.put("/vidly/genre/:id",(req,res)=>{
 
 })
 
-app.delete("/vidly/genre/:id",(req,res)=>{
+app.delete("/api/genre/:id",(req,res)=>{
     const genres = genre.find(gen => gen.id === parseInt(req.params.id))
     if(!genres) return res.status(404).send("The Genre with the given ID not found");
 
